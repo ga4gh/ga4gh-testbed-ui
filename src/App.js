@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {
+  BrowserRouter,
+  Switch,
+  Route
+} from 'react-router-dom';
+import { ThemeProvider } from '@mui/material/styles';
+import TestbedReportingAppBar from './lib/components/common/navigation/TestbedReportingAppBar';
+import Report from './lib/components/pages/report/Report';
+import theme from './lib/styles/theme';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    return (
+        <ThemeProvider theme={theme}>
+            <BrowserRouter>
+                <TestbedReportingAppBar />
+                <Switch>
+                    <Route path='/testbeds/:testbedId/series/:seriesId/reports/:reportId' component={Report} />
+                </Switch>
+            </BrowserRouter>
+        </ThemeProvider>
+    )
 }
 
 export default App;
