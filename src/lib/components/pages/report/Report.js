@@ -11,7 +11,7 @@ import {
     PageContainer
 } from '../../common/layout';
 import { defaultReport } from '../../../constants/defaultReports';
-import ReportButton from '../../common/navigation/ReportButton';
+import StatusTable from '../../common/info/StatusTable';
 import SummaryTable from '../../common/info/SummaryTable';
 import ReportInfoTable from '../../common/info/ReportInfoTable';
 import Phase from './Phase';
@@ -62,6 +62,8 @@ const Report = props => {
                 status={reportObj.status}
                 size="full"
             />
+
+            <StatusTable phases={reportObj.phases} />
 
             <Grid container spacing={2}>
                 <Grid item xs={12}>

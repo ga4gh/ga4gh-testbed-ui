@@ -25,8 +25,10 @@ const ReportButton = props => {
         SKIP: <SkipIcon />
     }
 
-    const startIcon = icons[props.status];
-    const color = severities[props.status] || "info";
+    const useColor = props.useColor === undefined ? true: props.useColor;
+    const useIcon = props.useIcon === undefined ? true: props.useIcon;
+    const startIcon = useIcon ? icons[props.status] : null;
+    const color = useColor ? severities[props.status] : "neutral";
     const variant = props.variant || "outlined";
     const size = props.size || "medium"
 

@@ -8,7 +8,8 @@ import SkipIcon from '@mui/icons-material/Block';
 
 const StatusChip = props => {
 
-    const text = `${props.reportLevel} Status: ${props.status}`;
+    const reportLevel = props.reportLevel || "";
+    const text = `${reportLevel} Status: ${props.status}`;
     const severities = {
         PASS: "success",
         WARN: "warning",
