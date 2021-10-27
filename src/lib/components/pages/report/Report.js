@@ -56,13 +56,40 @@ const Report = props => {
 
     return (
         <PageContainer>
-            <Typography variant="h2">Report Info</Typography>
+            <Typography variant="h5">Test Report</Typography>
+
+            <Typography variant="body1">
+                <strong>Testbed: </strong>
+                {reportObj.testbed_name}
+            </Typography>
+            <Typography variant="body1">
+                <strong>Testbed Version: </strong>
+                {reportObj.testbed_version}
+            </Typography>
+            <Typography variant="body1">
+                <strong>Platform: </strong>
+                {reportObj.platform_name}
+            </Typography>
+
             <StatusAlert
-                reportLevel="Report"
+                reportLevel="Test"
                 status={reportObj.status}
                 size="full"
             />
 
+            <Typography variant="h5">Test Status</Typography>
+            <Typography variant="body1">
+                <strong>Passed: </strong>
+                {reportObj.summary.passed}
+                <strong> Warned: </strong>
+                {reportObj.summary.warned}
+                <strong> Failed: </strong>
+                {reportObj.summary.failed}
+                <strong> Skipped: </strong>
+                {reportObj.summary.skipped}
+                <strong> Unknown: </strong>
+                {reportObj.summary.unknown}
+            </Typography>
             <StatusTable phases={reportObj.phases} />
 
             <Grid container spacing={2}>
@@ -72,20 +99,13 @@ const Report = props => {
                 </Grid>
 
                 <Grid item xs={12}>
-                    <Typography variant="h6">Report Status Summary</Typography>
-                    <SummaryTable summary={reportObj.summary} />
-                </Grid>
-
-                <Grid item xs={12}>
                     <Typography variant="h6">Input Parameters</Typography>
                     <ReportInfoTable {...inputParameterInfo} />
                 </Grid>
             </Grid>
 
-            {/* Buttons */}
-            <ReportButtonGroup reportButtonGroup={reportButtonGroup} />
-            
             {/* Subcomponent */}
+            <Typography variant="h5">Full Report</Typography>
             {reportObj.phases.map(phase => <Phase phase={phase} />)}
 
         </PageContainer>

@@ -24,7 +24,7 @@ const StatusTable = props => {
     }
 
     return (
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} className={classes.table}>
             <Table size="small">
                 <TableHead>
                     <TableRow>

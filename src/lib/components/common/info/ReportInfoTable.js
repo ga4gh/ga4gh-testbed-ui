@@ -8,10 +8,13 @@ import {
     TableRow,
     Paper
 } from '@mui/material';
+import reportInfoTableStyles from '../../../styles/common/info/reportInfoTableStyles';
 
 const ReportInfoTable = props => {
+    const classes = reportInfoTableStyles();
+
     return (
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} className={classes.table}>
             <Table size="small">
                 <TableHead>
                     <TableRow>

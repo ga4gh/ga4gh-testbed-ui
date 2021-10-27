@@ -1,7 +1,9 @@
 import { makeStyles } from '@mui/styles';
 
 const statusTableStyles = makeStyles((theme) => ({
-
+    table: {
+        marginBottom: 25
+    },
     passRow: {
         borderBottom: `2px solid ${theme.palette.success.main}`,
         backgroundColor: theme.palette.success.light + "60"

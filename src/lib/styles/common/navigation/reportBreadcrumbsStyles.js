@@ -2,7 +2,7 @@ import { makeStyles } from '@mui/styles';
 
 const reportBreadcrumbsStyles = makeStyles((theme) => ({
     div: {
-        marginTop: 50,
+        marginTop: 10,
         marginRight: 25,
         display: "inline-block"
     },

@@ -12,8 +12,11 @@ import ReportButton from '../../common/navigation/ReportButton';
 import { formatForDomId } from '../../../utils/stringUtils';
 import { formatDate } from '../../../utils/dateUtils';
 import Case from './Case';
+import testStyles from '../../../styles/pages/report/testStyles';
 
 const Test = props => {
+    const classes = testStyles();
+
     const breadcrumbs = [
         {
             label: `Phase: ${props.phaseName}`,
@@ -48,7 +51,7 @@ const Test = props => {
     })
 
     return (
-        <div>
+        <div className={classes.div}>
             {/* Breadcrumb */}
             <ReportBreadcrumbs
                 id={formatForDomId([
@@ -72,16 +75,7 @@ const Test = props => {
                         {props.test.test_description}
                     </Typography>
                 </Grid>
-                <Grid item xs={12}>
-                    <Typography variant="body1">
-                        <strong>Test Status Summary</strong>
-                    </Typography>
-                    <SummaryTable summary={props.test.summary} /> 
-                </Grid>
             </Grid>
-
-            {/* Buttons */}
-            <ReportButtonGroup reportButtonGroup={reportButtonGroup} />
 
             {/* Subcomponent */}
             {props.test.cases.map(testCase => {

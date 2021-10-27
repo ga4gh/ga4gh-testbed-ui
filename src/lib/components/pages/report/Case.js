@@ -3,8 +3,11 @@ import ReportBreadcrumbs from '../../common/navigation/ReportBreadcrumbs';
 import StatusChip from '../../common/info/StatusChip';
 import { formatForDomId } from '../../../utils/stringUtils';
 import { Typography } from '@mui/material';
+import caseStyles from '../../../styles/pages/report/caseStyles';
+import Log from './Log';
 
 const Case = props => {
+    const classes = caseStyles();
 
     const breadcrumbs = [
         {
@@ -19,13 +22,10 @@ const Case = props => {
             label: `Case: ${props.testCase.case_name}`,
             to: formatForDomId([props.phaseName, props.testName, props.testCase.case_name])
         }
-        
-        
-        
     ]
 
     return (
-        <div>
+        <div className={classes.div}>
             {/* Breadcrumb */}
             <ReportBreadcrumbs
                 id={formatForDomId([
@@ -53,7 +53,11 @@ const Case = props => {
             </Typography>
 
             {/* Message Log */}
-            
+            {props.testCase.log_messages.length > 0
+                ? <Log messages={props.testCase.log_messages} />
+                : null
+            }
+
         </div>
     )
 }
