@@ -52,7 +52,10 @@ const defaultReport = {
                         {
                             case_name: "Get e. coli",
                             case_description: "Get e. coli reference sequence",
-                            log_messages: [],
+                            log_messages: [
+                                "log message A",
+                                "log message B"
+                            ],
                             start_time: "2021-10-22T15:00:00Z",
                             end_time: "2021-10-22T15:30:00Z",
                             status: "PASS",

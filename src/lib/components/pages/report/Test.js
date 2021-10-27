@@ -7,6 +7,7 @@ import ReportBreadcrumbs from '../../common/navigation/ReportBreadcrumbs';
 import StatusChip from '../../common/info/StatusChip';
 import ReportInfoTable from '../../common/info/ReportInfoTable';
 import SummaryTable from '../../common/info/SummaryTable';
+import ReportButtonGroup from '../../common/navigation/ReportButtonGroup';
 import ReportButton from '../../common/navigation/ReportButton';
 import { formatForDomId } from '../../../utils/stringUtils';
 import { formatDate } from '../../../utils/dateUtils';
@@ -33,6 +34,19 @@ const Test = props => {
         ]
     }
 
+    const reportButtonGroup = props.test.cases.map(testCase => {
+        return {
+            status: testCase.status,
+            label: `View Case: ${testCase.case_name}`,
+            to: formatForDomId([
+                props.phaseName,
+                props.test.test_name,
+                testCase.case_name
+            ]),
+            size: 'small'
+        }
+    })
+
     return (
         <div>
             {/* Breadcrumb */}
@@ -53,34 +67,21 @@ const Test = props => {
             {/* Info & Summary */}
             <Grid container spacing={2}>
                 <Grid item xs={12}>
-                    <Typography variant="h6">Test Info</Typography>
-                    <ReportInfoTable {...testInfo} /> 
+                    <Typography variant="body1">
+                        <strong>Description: </strong>
+                        {props.test.test_description}
+                    </Typography>
                 </Grid>
                 <Grid item xs={12}>
-                    <Typography variant="h6">Status Summary</Typography>
+                    <Typography variant="body1">
+                        <strong>Test Status Summary</strong>
+                    </Typography>
                     <SummaryTable summary={props.test.summary} /> 
                 </Grid>
             </Grid>
 
             {/* Buttons */}
-            <Typography display="inline" variant="h6">Cases: </Typography>
-            {
-                props.test.cases.map(testCase => {
-                    return (
-                        <ReportButton
-                            status={testCase.status}
-                            variant="outlined"
-                            size="small"
-                            label={testCase.case_name}
-                            to={formatForDomId([
-                                props.phaseName,
-                                props.test.test_name,
-                                testCase.case_name
-                            ])}
-                        />
-                    )
-                })
-            }
+            <ReportButtonGroup reportButtonGroup={reportButtonGroup} />
 
             {/* Subcomponent */}
             {props.test.cases.map(testCase => {

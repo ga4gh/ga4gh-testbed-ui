@@ -2,6 +2,7 @@ import React from 'react';
 import ReportBreadcrumbs from '../../common/navigation/ReportBreadcrumbs';
 import StatusChip from '../../common/info/StatusChip';
 import { formatForDomId } from '../../../utils/stringUtils';
+import { Typography } from '@mui/material';
 
 const Case = props => {
 
@@ -40,6 +41,19 @@ const Case = props => {
                 reportLevel="Case"
                 status={props.testCase.status}
             />
+
+            {/* Info */}
+            <Typography variant="body1">
+                <strong>Description: </strong>
+                {props.testCase.case_description}
+            </Typography>
+            <Typography variant="body1">
+                <strong>Message: </strong>
+                {props.testCase.message}
+            </Typography>
+
+            {/* Message Log */}
+            
         </div>
     )
 }

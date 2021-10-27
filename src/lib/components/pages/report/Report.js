@@ -17,6 +17,7 @@ import ReportInfoTable from '../../common/info/ReportInfoTable';
 import Phase from './Phase';
 import { formatForDomId } from '../../../utils/stringUtils';
 import { formatDate } from '../../../utils/dateUtils';
+import ReportButtonGroup from '../../common/navigation/ReportButtonGroup';
 
 const Report = props => {
     let { testbedId, seriesId, reportId } = useParams();
@@ -41,6 +42,16 @@ const Report = props => {
             return {label: key, value: reportObj.input_parameters[key]}
         })
     }
+    const reportButtonGroup = reportObj.phases.map(phase => {
+        return (
+            {
+                status: phase.status,
+                label: `View Phase: ${phase.phase_name}`,
+                to: formatForDomId([phase.phase_name]),
+                size: 'large'
+            }
+        )
+    })
     
 
     return (
@@ -59,7 +70,7 @@ const Report = props => {
                 </Grid>
 
                 <Grid item xs={12}>
-                    <Typography variant="h6">Status Summary</Typography>
+                    <Typography variant="h6">Report Status Summary</Typography>
                     <SummaryTable summary={reportObj.summary} />
                 </Grid>
 
@@ -69,21 +80,10 @@ const Report = props => {
                 </Grid>
             </Grid>
 
-            <Typography display="inline" variant="h6">Phases: </Typography>
-            {
-                reportObj.phases.map(phase => {
-                    return (
-                        <ReportButton
-                            status={phase.status}
-                            variant="outlined"
-                            size="small"
-                            label={phase.phase_name}
-                            to={formatForDomId([phase.phase_name])}
-                        />
-                    )
-                })
-            }
-
+            {/* Buttons */}
+            <ReportButtonGroup reportButtonGroup={reportButtonGroup} />
+            
+            {/* Subcomponent */}
             {reportObj.phases.map(phase => <Phase phase={phase} />)}
 
         </PageContainer>
