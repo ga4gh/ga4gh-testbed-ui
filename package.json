@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.5.0",
+    "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11.3.0",
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@mui/icons-material": "^5.0.5",
@@ -20,10 +21,15 @@
   },
   "scripts": {
     "reactStart": "react-scripts start",
+    "reactClean": "rm -rf build",
     "reactBuild": "react-scripts build",
+    "reactCleanBuild": "npm run reactClean && npm run reactBuild && cp -r build dist/public",
+    "expressClean": "rm -rf dist",
+    "expressBuild": "npx webpack-cli && chmod 744 ./dist/ga4gh-testbed-ui.js",
+    "expressCleanBuild": "npm run expressClean && npm run expressBuild",
+    "fullCleanBuild": "npm run expressCleanBuild && npm run reactCleanBuild",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "expressBuild": "npx webpack-cli && chmod 744 ./dist/ga4gh-testbed-ui.js"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -46,6 +52,7 @@
   "devDependencies": {
     "@babel/core": "^7.17.8",
     "webpack": "^4.44.2",
-    "webpack-cli": "^4.9.2"
+    "webpack-cli": "^4.9.2",
+    "webpack-node-externals": "^3.0.0"
   }
 }

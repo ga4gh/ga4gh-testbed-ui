@@ -1,12 +1,23 @@
 const path = require('path');
 const webpack = require('webpack');
+const nodeExternals = require('webpack-node-externals')
 
 module.exports = {
-    target: "node",
-    mode: "development",
-    entry: {'ga4gh-testbed-ui': './src/lib/server/server.js'},
+    entry: './src/lib/server/server.js',
+    target: 'node',
+    mode: 'development',
+    externals: [nodeExternals()],
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve('dist'),
+        filename: 'ga4gh-testbed-ui.js'
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                use: 'babel-loader'
+            }
+        ]
     },
     resolve: {
         modules: [

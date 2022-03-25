@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import AppClient from './AppClient';
+import createEmotionCache from './createEmotionCache';
 
-ReactDOM.render(
+const cache = createEmotionCache();
+
+ReactDOM.hydrate(
   <React.StrictMode>
-    <App />
+    <AppClient cache={cache} />
   </React.StrictMode>,
   document.getElementById('root')
 );
