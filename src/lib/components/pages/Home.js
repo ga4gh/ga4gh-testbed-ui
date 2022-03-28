@@ -6,10 +6,10 @@ import {
 import {
     Link
 } from 'react-router-dom';
-import axios from 'axios';
 import { PageContainer } from '../common/layout';
 import SpaceDivider from '../common/layout/SpaceDivider';
 import CardSet from '../home/CardSet';
+import { simpleApiCall } from '../../utils/apiUtils';
 
 const Home = props => {
 
@@ -22,19 +22,12 @@ const Home = props => {
     let [platforms, setPlatforms] = useState([]);
     let [errPlatforms, setErrPlatforms] = useState(null);
 
-    const simpleApiCall = (endpoint, dataSetter, errorSetter) => {
-        axios.get(process.env.REACT_APP_TESTBED_API_BASE_URL + endpoint)
-            .then(response => {
-                dataSetter(response.data)
-            }, error => {
-                errorSetter(error)
-            })
-    }
+    let baseUrl = process.env.REACT_APP_TESTBED_API_BASE_URL
 
-    useEffect(() => simpleApiCall("specifications", setSpecifications, setErrSpecifications), []);
-    useEffect(() => simpleApiCall("testbeds", setTestbeds, setErrTestbeds), []);
-    useEffect(() => simpleApiCall("organizations", setOrganizations, setErrOrganizations), []);
-    useEffect(() => simpleApiCall("platforms", setPlatforms, setErrPlatforms), []);
+    useEffect(() => simpleApiCall(`${baseUrl}/specifications`, setSpecifications, setErrSpecifications), []);
+    useEffect(() => simpleApiCall(`${baseUrl}/testbeds`, setTestbeds, setErrTestbeds), []);
+    useEffect(() => simpleApiCall(`${baseUrl}/organizations`, setOrganizations, setErrOrganizations), []);
+    useEffect(() => simpleApiCall(`${baseUrl}/platforms`, setPlatforms, setErrPlatforms), []);
 
     return (
         <PageContainer>
@@ -58,6 +51,7 @@ const Home = props => {
                 label="Specification"
                 name_key="spec_name"
                 description_key="spec_description"
+                endpoint="specifications"
             />
             <SpaceDivider />
 
@@ -69,6 +63,7 @@ const Home = props => {
                 label="Testbed"
                 name_key="testbed_name"
                 description_key="testbed_description"
+                endpoint="testbeds"
             />
             <SpaceDivider />
 
@@ -80,6 +75,7 @@ const Home = props => {
                 label="Organization"
                 name_key="organization_name"
                 description_key="organization_url"
+                endpoint="organizations"
             />
             <SpaceDivider />
 
@@ -91,6 +87,7 @@ const Home = props => {
                 label="Platform"
                 name_key="platform_name"
                 description_key="platform_description"
+                endpoint="platforms"
             />
             <SpaceDivider />
         </PageContainer>

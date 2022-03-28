@@ -7,6 +7,7 @@ import {
     CardActions,
     CardContent
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const CardSet = props => {
     return (
@@ -28,7 +29,12 @@ const CardSet = props => {
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <Button size="small">View {props.label}</Button>
+                                <Button
+                                    component={Link}
+                                    to={`/${props.endpoint}/${item.id}`}
+                                >
+                                    View {props.label}
+                                </Button>
                             </CardActions>
                         </Card>
                     </Grid>

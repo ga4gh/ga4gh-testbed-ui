@@ -5,6 +5,10 @@ import {
 } from 'react-router-dom';
 import TestbedReportingAppBar from './lib/components/common/navigation/TestbedReportingAppBar';
 import Home from './lib/components/pages/Home';
+import Specification from './lib/components/pages/Specification';
+import Testbed from './lib/components/pages/Testbed';
+import Organization from './lib/components/pages/Organization';
+import Platform from './lib/components/pages/Platform';
 import Report from './lib/components/pages/report/Report';
 
 const App = () => {
@@ -13,6 +17,10 @@ const App = () => {
             <TestbedReportingAppBar />
             <Switch>
                 <Route exact path='/' component={Home} />
+                <Route exact path='/specifications/:specificationId' component={Specification} />
+                <Route exact path='/testbeds/:testbedId' component={Testbed} />
+                <Route exact path='/organizations/:organizationId' component={Organization} />
+                <Route exact path='/platforms/:platformId' component={Platform} />
                 <Route exact path='/testbeds/:testbedId/series/:seriesId/reports/:reportId' component={Report} />
             </Switch>
         </div>
