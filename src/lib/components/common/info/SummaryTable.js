@@ -1,7 +1,5 @@
 import React from 'react';
 import {
-    Typography,
-    Chip,
     Table,
     TableBody,
     TableCell,
