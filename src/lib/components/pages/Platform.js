@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Button, Typography } from '@mui/material';
+import {
+    Button,
+    Typography,
+    Grid,
+    Card,
+    CardActions,
+    CardContent
+} from '@mui/material';
 import { PageContainer } from '../common/layout';
 import { simpleApiCall } from '../../utils/apiUtils';
 import SpaceDivider from '../common/layout/SpaceDivider';
 import CardSet from '../home/CardSet';
-
 const  Platform = props => {
 
     let { platformId } = useParams();
@@ -43,6 +49,38 @@ const  Platform = props => {
                         endpoint="specifications"
                     />
                     <SpaceDivider />
+
+                    <Typography variant="h5">The following test reports are available for this platform:</Typography>
+                    <Grid container spacing={2}>
+                        {platform.report_series.map(item => {
+                            return (
+                                <Grid item>
+                                    <Card sx={{ minWidth: 275 }}>
+                                        <CardContent>
+                                            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                                                Report Series - {item.id}
+                                            </Typography>
+                                            <Typography variant="h5" component="div">
+                                                Testbed: {item.testbed.testbed_name}
+                                            </Typography>
+                                            <Typography variant="body2">
+                                                {item.testbed.testbed_description}
+                                                <br />
+                                            </Typography>
+                                        </CardContent>
+                                        <CardActions>
+                                            <Button
+                                                component={Link}
+                                                to={`/report-series/${item.id}`}
+                                            >
+                                                View Reports
+                                            </Button>
+                                        </CardActions>
+                                    </Card>
+                                </Grid>
+                            )
+                        })}
+                    </Grid>
                 </div>
             : null
             }

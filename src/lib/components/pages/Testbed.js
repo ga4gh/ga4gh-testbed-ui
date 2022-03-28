@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Button, Typography } from '@mui/material';
+import {
+    Button,
+    Typography,
+    Grid,
+    Card,
+    CardActions,
+    CardContent
+} from '@mui/material';
 import { PageContainer } from '../common/layout';
 import { simpleApiCall } from '../../utils/apiUtils';
 import SpaceDivider from '../common/layout/SpaceDivider';
@@ -37,6 +44,39 @@ const  Testbed = props => {
                         endpoint="specifications"
                     />
                     <SpaceDivider />
+
+                    <Typography variant="h5">The following platforms have been tested against this application:</Typography>
+                    <Grid container spacing={2}>
+                        {testbed.report_series.map(item => {
+                            return (
+                                <Grid item>
+                                    <Card sx={{ minWidth: 275 }}>
+                                        <CardContent>
+                                            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                                                Report Series - {item.id}
+                                            </Typography>
+
+                                            <Typography variant="h5" component="div">
+                                                Platform: {item.platform.platform_name}
+                                            </Typography>
+                                            <Typography variant="body2">
+                                                {item.platform.platform_description}
+                                                <br />
+                                            </Typography>
+                                        </CardContent>
+                                        <CardActions>
+                                            <Button
+                                                component={Link}
+                                                to={`/report-series/${item.id}`}
+                                            >
+                                                View Reports
+                                            </Button>
+                                        </CardActions>
+                                    </Card>
+                                </Grid>
+                            )
+                        })}
+                    </Grid>
                 </div>
             : null
             }

@@ -10,6 +10,7 @@ import Testbed from './lib/components/pages/Testbed';
 import Organization from './lib/components/pages/Organization';
 import Platform from './lib/components/pages/Platform';
 import Report from './lib/components/pages/report/Report';
+import ReportSeries from './lib/components/pages/ReportSeries';
 
 const App = () => {
     return (
@@ -21,6 +22,8 @@ const App = () => {
                 <Route exact path='/testbeds/:testbedId' component={Testbed} />
                 <Route exact path='/organizations/:organizationId' component={Organization} />
                 <Route exact path='/platforms/:platformId' component={Platform} />
+                <Route exact path='/report-series/:reportSeriesId' component={ReportSeries} />
+                <Route exact path='/reports/:reportId' component={Report} />
                 <Route exact path='/testbeds/:testbedId/series/:seriesId/reports/:reportId' component={Report} />
             </Switch>
         </div>
