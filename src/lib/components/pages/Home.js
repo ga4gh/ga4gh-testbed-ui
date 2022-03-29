@@ -37,9 +37,9 @@ const Home = props => {
                 variant="contained"
                 color="primary"
                 component={Link}
-                to="/testbeds/testbedId/series/seriesId/reports/reportId"
+                to="/reports/01d0e947-5975-4786-a755-5025fec7416d"
             >
-                View Sample Report
+                View Demo Report
             </Button>
             <SpaceDivider />
 

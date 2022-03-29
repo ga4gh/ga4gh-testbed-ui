@@ -51,23 +51,27 @@ const ReportSeries = props => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {reportSeries.reports.map(report => {
-                                    return (
-                                        <TableRow>
-                                            <TableCell>{report.id}</TableCell>
-                                            <TableCell>{report.start_time}</TableCell>
-                                            <TableCell>{report.status}</TableCell>
-                                            <TableCell>
-                                                <Button
-                                                    component={Link}
-                                                    to={`/reports/${report.id}`}
-                                                >
-                                                    View
-                                                </Button>
-                                            </TableCell>
-                                        </TableRow>
-                                    )
-                                })}
+                                {reportSeries.hasOwnProperty("reports") && reportSeries.reports.length > 0
+                                ?
+                                    reportSeries.reports.map(report => {
+                                        return (
+                                            <TableRow>
+                                                <TableCell>{report.id}</TableCell>
+                                                <TableCell>{report.start_time}</TableCell>
+                                                <TableCell>{report.status}</TableCell>
+                                                <TableCell>
+                                                    <Button
+                                                        component={Link}
+                                                        to={`/reports/${report.id}`}
+                                                    >
+                                                        View
+                                                    </Button>
+                                                </TableCell>
+                                            </TableRow>
+                                        )
+                                    })
+                                : null
+                                }
                             </TableBody>
                         </Table>
                     </TableContainer>

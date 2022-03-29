@@ -24,7 +24,6 @@ const App = () => {
                 <Route exact path='/platforms/:platformId' component={Platform} />
                 <Route exact path='/report-series/:reportSeriesId' component={ReportSeries} />
                 <Route exact path='/reports/:reportId' component={Report} />
-                <Route exact path='/testbeds/:testbedId/series/:seriesId/reports/:reportId' component={Report} />
             </Switch>
         </div>
     )
