@@ -44,28 +44,6 @@ uiRouter.get("/*", (req, res) => {
 
     // Send the rendered page back to the client.
     res.send(renderFullPage(html, emotionCss));
-
-    /*
-    const indexFile = path.resolve('./public/index.html');
-  
-    fs.readFile(indexFile, 'utf8', (err, data) => {
-        if (err) {
-            console.error('Something went wrong:', err);
-            return res.status(500).send('Oops, better luck next time!');
-        }
-
-        let newHTML = data.replace('<div id="root"></div>', `<div id="root">${app}</div>`)
-        console.log("What is new HTML?");
-        console.log("**********");
-        console.log(newHTML);
-        console.log("**********");
-
-        return res.send(
-            
-            data.replace('<div id="root"></div>', `<div id="root">${app}</div>`)
-        );
-    });
-    */
 })
 
 export default uiRouter;

@@ -14,13 +14,15 @@ const StatusChip = props => {
         PASS: "success",
         WARN: "warning",
         FAIL: "error",
-        SKIP: "info"
+        SKIP: "info",
+        UNKNOWN: "error"
     }
     const icons = {
         PASS: <CheckIcon />,
         WARN: <WarnIcon />,
         FAIL: <FailIcon />,
-        SKIP: <SkipIcon />
+        SKIP: <SkipIcon />,
+        UNKNOWN: <FailIcon />
     }
 
     return (

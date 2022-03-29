@@ -53,7 +53,7 @@ const Case = props => {
             </Typography>
 
             {/* Message Log */}
-            {props.testCase.log_messages.length > 0
+            {props.testCase.hasOwnProperty("log_messages") && props.testCase.log_messages.length > 0
                 ? <Log messages={props.testCase.log_messages} />
                 : null
             }

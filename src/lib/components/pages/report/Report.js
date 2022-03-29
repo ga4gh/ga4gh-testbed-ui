@@ -25,39 +25,12 @@ const Report = props => {
 
     let { reportId } = useParams();
 
-    // let { testbedId, seriesId, reportId } = useParams();
-
-    // TODO: use non-hardcoded report pulled from API
-    // const reportObj = defaultReport;
     let [report, setReport] = useState(null);
     let [errReport, setErrReport] = useState(null);
 
     let baseUrl = process.env.REACT_APP_TESTBED_API_BASE_URL
 
-    console.log(`${baseUrl}/reports/${reportId}`);
-
     useEffect(() => simpleApiCall(`${baseUrl}/reports/${reportId}`, setReport, setErrReport), []);
-
-    /*
-    const reportInfo = {
-        header: ["Report Info Key", "Value"],
-        rows: [
-            {label: "Testbed Name", value: reportObj["testbed_name"]},
-            {label: "Testbed Version", value: reportObj["testbed_version"]},
-            {label: "Testbed Description", value: reportObj["testbed_description"]},
-            {label: "Platform Name", value: reportObj["platform_name"]},
-            {label: "Platform Description", value: reportObj["platform_description"]},
-            {label: "Start Time", value: formatDate(reportObj["start_time"])},
-            {label: "End Time", value: formatDate(reportObj["end_time"])}
-        ]
-    }
-    const inputParameterInfo = {
-        header: ["Param Name", "Param Value"],
-        rows: Object.keys(reportObj.input_parameters).map(key => {
-            return {label: key, value: reportObj.input_parameters[key]}
-        })
-    }
-    */
 
     return (
         <PageContainer>
@@ -98,6 +71,41 @@ const Report = props => {
                     </Typography>
 
                     <StatusTable phases={report.phases} />
+
+                    <Typography display="inline" variant="h6">Report Info</Typography>
+                    <HelpBubble
+                        message="Summary information for this test report, including
+                            the testbed that was run, the platform it was run on, and
+                            when the tests were executed."
+                    />
+                    <ReportInfoTable
+                        header={["Report Info Key", "Value"]}
+                        rows={[
+                            {label: "Report ID", value: report.id},
+                            {label: "Start Time", value: formatDate(report.start_time)},
+                            {label: "End Time", value: formatDate(report.end_time)}
+                        ]}
+                    />
+
+                    <Typography display="inline" variant="h6">Input Parameters</Typography>
+                    <HelpBubble
+                        message="Input parameters provided to the testbed application."
+                    />
+                    <ReportInfoTable 
+                        header={["Param Name", "Param Value"]}
+                        rows={
+                            Object.keys(report.input_parameters).map(key => {
+                                return {label: key, value: report.input_parameters[key]}
+                            })
+                        }
+                    />
+
+                    <Typography display="inline" variant="h5">Full Report</Typography>
+                    <HelpBubble
+                        message="Full breakdown of all report phases, tests, and test
+                            cases. Displays full log information for each test case."
+                    />
+                    {report.phases.map(phase => <Phase phase={phase} />)}
                 </div>
             : null
             }
@@ -116,30 +124,7 @@ const Report = props => {
                 <strong>Platform: </strong>
                 {reportObj.platform_name}
             </Typography>
-            */}
-
-            {/*
-
-            
-            <StatusTable phases={reportObj.phases} />
-
-            <Typography display="inline" variant="h6">Report Info</Typography>
-            <HelpBubble
-                message="Summary information for this test report, including
-                    the testbed that was run, the platform it was run on, and
-                    when the tests were executed."
-            />
-            <ReportInfoTable {...reportInfo} />
-                
-
-                
-            <Typography display="inline" variant="h6">Input Parameters</Typography>
-            <HelpBubble
-                message="Input parameters provided to the testbed application."
-            />
-            <ReportInfoTable {...inputParameterInfo} />
-
-            */}
+        */}
 
             {/* Subcomponent */}
             {/*

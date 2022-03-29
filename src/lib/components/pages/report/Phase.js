@@ -58,14 +58,17 @@ const Phase = props => {
             </Grid>
 
             {/* Subcomponent */}
-            {props.phase.tests.map(test => {
-                return (
-                    <Test
-                        test={test}
-                        phaseName={props.phase.phase_name}
-                    />
-                )
-            })}
+            {props.phase.hasOwnProperty("tests")
+            ?
+                props.phase.tests.map(test => {
+                    return (
+                        <Test
+                            test={test}
+                            phaseName={props.phase.phase_name}
+                        />
+                    )
+                })
+            : null}
         </div>
     )
 }

@@ -13,9 +13,6 @@ const ProgressBar = props => {
         UNKNOWN: classes.cellFail
     }
 
-    console.log("cases:")
-    console.log(props.cases)
-
     return (
         <div className={classes.div}>
             {props.cases.map((testCase, i) => {

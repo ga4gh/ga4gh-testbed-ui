@@ -63,6 +63,10 @@ const StatusTable = props => {
                             </TableRow>
                         )
 
+                        if (! phase.hasOwnProperty("tests")) {
+                            return [phaseRow];
+                        }
+
                         const testAndCaseRows = phase.tests.map(test => {
                             const testRow = (
                                 <TableRow className={rowClasses[test.status]}>

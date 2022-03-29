@@ -1,6 +1,4 @@
 const flattenReportCases = report => {
-    console.log("going to flatten report");
-    console.log(report);
     let cases = [];
 
     if (report.hasOwnProperty("phases")) {
@@ -22,7 +20,6 @@ const flattenReportCases = report => {
         })
     }
     
-    console.log("flatten report success");
     return cases;
 }
 
