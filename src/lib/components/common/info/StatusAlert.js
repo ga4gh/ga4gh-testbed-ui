@@ -10,7 +10,8 @@ const StatusAlert = props => {
         PASS: "success",
         WARN: "warning",
         FAIL: "error",
-        SKIP: "info"
+        SKIP: "info",
+        UNKNOWN: "error"
     }
     const widthClasses = {
         full: classes.sizeFull,

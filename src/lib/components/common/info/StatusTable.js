@@ -20,7 +20,8 @@ const StatusTable = props => {
         PASS: classes.passRow,
         WARN: classes.warnRow,
         FAIL: classes.failRow,
-        SKIP: classes.skipRow
+        SKIP: classes.skipRow,
+        UNKNOWN: classes.failRow
     }
 
     return (
@@ -61,6 +62,10 @@ const StatusTable = props => {
                                 </TableCell>
                             </TableRow>
                         )
+
+                        if (! phase.hasOwnProperty("tests")) {
+                            return [phaseRow];
+                        }
 
                         const testAndCaseRows = phase.tests.map(test => {
                             const testRow = (
