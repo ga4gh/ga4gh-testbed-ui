@@ -9,10 +9,9 @@ const ProgressBar = props => {
         PASS: classes.cellPass,
         WARN: classes.cellWarn,
         FAIL: classes.cellFail,
-        SKIP: classes.cellSkip
+        SKIP: classes.cellSkip,
+        UNKNOWN: classes.cellFail
     }
-
-    console.log(props.cases)
 
     return (
         <div className={classes.div}>
