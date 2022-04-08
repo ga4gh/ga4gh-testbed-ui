@@ -45,7 +45,9 @@ const Home = props => {
 
             {/* render specification list */}
             <Typography variant="h4">Specifications</Typography>
-            <Typography variant="h6">Specifications are...</Typography>
+            <Typography variant="h6">
+                Specifications represent approved GA4GH technical standards
+            </Typography>
             <CardSet
                 items={specifications}
                 label="Specification"
@@ -57,7 +59,10 @@ const Home = props => {
 
             {/* render testbed list */}
             <Typography variant="h4">Testbeds</Typography>
-            <Typography variant="h6">Testbeds are...</Typography>
+            <Typography variant="h6">
+                Testbeds are applications that can test a running web service's
+                compliance to an underlying GA4GH specification
+            </Typography>
             <CardSet
                 items={testbeds}
                 label="Testbed"
@@ -69,7 +74,11 @@ const Home = props => {
 
             {/* render organization list */}
             <Typography variant="h4">Organizations</Typography>
-            <Typography variant="h6">Organizations are...</Typography>
+            <Typography variant="h6">
+                Organizations are groups/institutions that have implemented
+                one or more GA4GH specifications in their own applications and
+                services
+            </Typography>
             <CardSet
                 items={organizations}
                 label="Organization"
@@ -81,7 +90,10 @@ const Home = props => {
 
             {/* render platform list */}
             <Typography variant="h4">Platforms</Typography>
-            <Typography variant="h6">Platforms are...</Typography>
+            <Typography variant="h6">
+                Platforms are services (or sets of services) that implement
+                one or more GA4GH specifications
+            </Typography>
             <CardSet
                 items={platforms}
                 label="Platform"
