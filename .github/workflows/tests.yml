@@ -1,44 +1,37 @@
 name: Tests
 on: [push, pull_request, workflow_dispatch] #workflow_dispatch works only if its active in the main branch
-Docker-Test:
-  runs-on: ubuntu-latest
-  steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+jobs:
+  Docker-Test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Setup Docker Buildx
-      id: buildx
-      uses: docker/setup-buildx-action@v1
+      - name: Setup Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
 
-    - name: Docker Hub Login
-      uses: docker/login-action@v1
-      with:
-        username: ${{ secrets.DOCKER_HUB_USERNAME }}
-        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - name: Docker Hub Login
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-    - name: Set Docker Image Version
-      run: |
-        source ci/set-docker-image-version.sh
-        echo "version=${DOCKER_IMG_VER}" >> $GITHUB_ENV
+      - name: Set Docker Image Version
+        run: |
+          source ci/set-docker-image-version.sh
+          echo "version=${DOCKER_IMG_VER}" >> $GITHUB_ENV
 
-    - name: Build Docker Image
-      uses: docker/build-push-action@v2
-      with:
-        context: .
-        builder: ${{ steps.buildx.outputs.name }}
-        push: true
-        tags: ga4gh/ga4gh-testbed-ui:${{ env.version }}
-        build-args: VERSION=${{ env.version }}
-        cache-from: type=gha #GitHub Actions Cache Exporter
-        cache-to: type=gha,mode=max
+      - name: Build Docker Image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          builder: ${{ steps.buildx.outputs.name }}
+          push: true
+          tags: ga4gh/ga4gh-testbed-ui:${{ env.version }}
+          build-args: VERSION=${{ env.version }}
+          cache-from: type=gha #GitHub Actions Cache Exporter
+          cache-to: type=gha,mode=max
 
-    - name: Start Services
-      run: docker-compose up -d
-
-    # - name: Setup upterm session # Using Github - SSH for debugging
-    #   uses: lhotari/action-upterm@v1
-    #   with:
-    #     ## limits ssh access and adds the ssh public key for the user which triggered the workflow
-    #     limit-access-to-actor: true
-    #     ## limits ssh access and adds the ssh public keys of the listed GitHub users
-    #     limit-access-to-users: jb-adams
+      - name: Start Services
+        run: docker-compose up -d
