@@ -6,13 +6,13 @@ FROM node:16.13.2-alpine3.15 as builder
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
-COPY package.json package.json
-COPY package-lock.json package-lock.json
-RUN npm install
+#COPY .env.connect .env.production
+COPY .env.development .env.development
+COPY public/ /app/public
+COPY src/ /app/src
+COPY package.json /app/
 
-COPY .env.connect .env.production
-COPY public public
-COPY src src
+RUN npm install
 RUN npm run reactBuild
 
 # Final
