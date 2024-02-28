@@ -1,3 +1,5 @@
+name: Tests
+on: [push, pull_request, workflow_dispatch] #workflow_dispatch works only if its active in the main branch
 Docker-Test:
   runs-on: ubuntu-latest
   steps:
