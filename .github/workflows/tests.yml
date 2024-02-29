@@ -17,6 +17,11 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
+      - name: Set Docker Image Version
+        run: |
+          source ci/set-docker-image-version.sh
+          echo "version=${DOCKER_IMG_VER}" >> $GITHUB_ENV
+
       - name: Build Docker Image
         uses: docker/build-push-action@v2
         with:
