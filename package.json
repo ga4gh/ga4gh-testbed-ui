@@ -1,6 +1,6 @@
 {
   "name": "ga4gh-testbed-ui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.5.0",
@@ -52,9 +52,6 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.17.8",
-    "webpack": "^4.44.2",
-    "webpack-cli": "^4.9.2",
-    "webpack-node-externals": "^3.0.0"
+    "@babel/core": "^7.17.8"
   }
 }

@@ -1,0 +1,9 @@
+# docker-compose for Connect April 2022 demo
+# sets up Testbed API and UI services
+version: "3.9"
+services:
+  ui:
+    image: ga4gh/ga4gh-testbed-ui:0.1.1
+    hostname: dev-testbed.ga4gh.org
+    ports:
+      - "3000:3000"
