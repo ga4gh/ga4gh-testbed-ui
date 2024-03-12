@@ -29,8 +29,9 @@ const Report = props => {
     let [errReport, setErrReport] = useState(null);
 
     let baseUrl = process.env.REACT_APP_TESTBED_API_BASE_URL
+    let basePort = process.env.REACT_APP_TESTBED_API_BASE_PORT
 
-    useEffect(() => simpleApiCall(`${baseUrl}/reports/${reportId}`, setReport, setErrReport), []);
+    useEffect(() => simpleApiCall(`${baseUrl}:${basePort}/reports/${reportId}`, setReport, setErrReport), []);
 
     return (
         <PageContainer>

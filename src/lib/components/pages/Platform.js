@@ -20,8 +20,9 @@ const  Platform = props => {
     let [errPlatform, setErrPlatform] = useState(null);
 
     let baseUrl = process.env.REACT_APP_TESTBED_API_BASE_URL
+    let basePort = process.env.REACT_APP_TESTBED_API_BASE_PORT
 
-    useEffect(() => simpleApiCall(`${baseUrl}/platforms/${platformId}`, setPlatform, setErrPlatform), []);
+    useEffect(() => simpleApiCall(`${baseUrl}:${basePort}/platforms/${platformId}`, setPlatform, setErrPlatform), []);
 
     return (
         <PageContainer>

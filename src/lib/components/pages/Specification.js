@@ -14,8 +14,9 @@ const  Specification = props => {
     let [errSpecification, setErrSpecification] = useState(null);
 
     let baseUrl = process.env.REACT_APP_TESTBED_API_BASE_URL
+    let basePort = process.env.REACT_APP_TESTBED_API_BASE_PORT
 
-    useEffect(() => simpleApiCall(`${baseUrl}/specifications/${specificationId}`, setSpecification, setErrSpecification), []);
+    useEffect(() => simpleApiCall(`${baseUrl}:${basePort}/specifications/${specificationId}`, setSpecification, setErrSpecification), []);
 
     return (
         <PageContainer>

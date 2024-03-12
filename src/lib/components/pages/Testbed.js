@@ -21,8 +21,9 @@ const  Testbed = props => {
     let [errTestbed, setErrTestbed] = useState(null);
 
     let baseUrl = process.env.REACT_APP_TESTBED_API_BASE_URL
+    let basePort = process.env.REACT_APP_TESTBED_API_BASE_PORT
 
-    useEffect(() => simpleApiCall(`${baseUrl}/testbeds/${testbedId}`, setTestbed, setErrTestbed), []);
+    useEffect(() => simpleApiCall(`${baseUrl}:${basePort}/testbeds/${testbedId}`, setTestbed, setErrTestbed), []);
 
     return (
         <PageContainer>

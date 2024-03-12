@@ -23,11 +23,12 @@ const Home = props => {
     let [errPlatforms, setErrPlatforms] = useState(null);
 
     let baseUrl = process.env.REACT_APP_TESTBED_API_BASE_URL
+    let basePort = process.env.REACT_APP_TESTBED_API_BASE_PORT
 
-    useEffect(() => simpleApiCall(`${baseUrl}/specifications`, setSpecifications, setErrSpecifications), []);
-    useEffect(() => simpleApiCall(`${baseUrl}/testbeds`, setTestbeds, setErrTestbeds), []);
-    useEffect(() => simpleApiCall(`${baseUrl}/organizations`, setOrganizations, setErrOrganizations), []);
-    useEffect(() => simpleApiCall(`${baseUrl}/platforms`, setPlatforms, setErrPlatforms), []);
+    useEffect(() => simpleApiCall(`${baseUrl}:${basePort}/specifications`, setSpecifications, setErrSpecifications), []);
+    useEffect(() => simpleApiCall(`${baseUrl}:${basePort}/testbeds`, setTestbeds, setErrTestbeds), []);
+    useEffect(() => simpleApiCall(`${baseUrl}:${basePort}/organizations`, setOrganizations, setErrOrganizations), []);
+    useEffect(() => simpleApiCall(`${baseUrl}:${basePort}/platforms`, setPlatforms, setErrPlatforms), []);
 
     return (
         <PageContainer>
@@ -37,10 +38,24 @@ const Home = props => {
                 variant="contained"
                 color="primary"
                 component={Link}
-                to="/reports/01d0e947-5975-4786-a755-5025fec7416d"
+                to="/reports/eab621df-37ad-4441-889e-5f3e5ffc3c27"
             >
                 View Demo Report
             </Button>
+            <SpaceDivider />
+
+            {/* Testing */}
+            <Typography variant="h4">Testing</Typography>
+            <Typography variant="h6">
+                Specifications represent approved GA4GH technical standards
+            </Typography>
+            <CardSet
+                items={testbeds}
+                label="Testbed"
+                name_key="testbed_name"
+                description_key="testbed_description"
+                endpoint="testbeds"
+            />
             <SpaceDivider />
 
             {/* render specification list */}
